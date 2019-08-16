@@ -19,12 +19,11 @@ public class OutboundChannel {
     @Bean
     @ServiceActivator(inputChannel = "pubsubOutputChannel")
     public PubSubMessageHandler messageSender(PubSubTemplate pubsubTemplate) {
-        return new PubSubMessageHandler(pubsubTemplate, "foobar-topic");
+        return new PubSubMessageHandler(pubsubTemplate, "pipeline-demo-topic");
     }
 
     @MessagingGateway(defaultRequestChannel = "pubsubOutputChannel")
     public interface PubsubOutboundGateway {
         void sendToPubsub(String text);
     }
-
 }
